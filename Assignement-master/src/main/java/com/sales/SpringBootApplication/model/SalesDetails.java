@@ -1,57 +1,82 @@
 package com.sales.SpringBootApplication.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.transaction.Transaction;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table
-public class SalesDetails {
-	@Column
-	private Date Transaction_date ; 
+public class SalesDetails{
 	
-	@Column
-	private String  product;
+	private static final String MY_TIME_ZONE="Asia/Kolkata";
+
+	@Column(name="ID")
+	@GeneratedValue
+	@Id
+	private int id;
 	
-	@Column
+	@Column(name="TRANSACTION_DATE")
+	@JsonFormat(timezone = MY_TIME_ZONE)
+	private Timestamp transaction_date ; 
+	
+	@Column(name="PRODUCT")
+	private String product;
+	
+	@Column(name="PRICE")
 	private int price;
 	
-	@Column
+	@Column(name="PAMENT_TYPE")
 	private String pament_type;
 	
-	@Column
+	@Column(name="NAME")
 	private String name;
 	
-	@Column
+	@Column(name="CITY")
 	private String city;
 	
-	@Column
+	@Column(name="STATE")
 	private String state;
 	
-	@Column
+	@Column(name="COUNTRY")
 	private String country;
 	
-	@Column
-	private Date account_created;
+	@Column(name="ACCOUNT_CREATED")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Timestamp account_created;
 	
-	@Column
-	private Date last_login;
+	@Column(name="LAST_LOGIN")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Timestamp last_login;
 	
-	@Column
+	@Column(name="LATITUDE")
 	private float latitude;
-	
-	@Column
+
+	@Column(name="LONGITUDE")
 	private float longitude;
 
-	public Date getTransaction_date() {
-		return Transaction_date;
+	
+	
+	public int getId() {
+		return id;
 	}
 
-	public void setTransaction_date(Date transaction_date) {
-		Transaction_date = transaction_date;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getTransaction_date() {
+		return transaction_date;
+	}
+
+	public void setTransaction_date(Timestamp transaction_date) {
+		this.transaction_date = transaction_date;
 	}
 
 	public String getProduct() {
@@ -114,7 +139,7 @@ public class SalesDetails {
 		return account_created;
 	}
 
-	public void setAccount_created(Date account_created) {
+	public void setAccount_created(Timestamp account_created) {
 		this.account_created = account_created;
 	}
 
@@ -122,7 +147,7 @@ public class SalesDetails {
 		return last_login;
 	}
 
-	public void setLast_login(Date last_login) {
+	public void setLast_login(Timestamp last_login) {
 		this.last_login = last_login;
 	}
 
@@ -141,11 +166,17 @@ public class SalesDetails {
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
-
-	public SalesDetails(Date transaction_date, String product, int price, String pament_type, String name, String city,
-			String state, String country, Date account_created, Date last_login, float latitude, float longitude) {
+	
+	public SalesDetails()
+	{
+		
+	}
+	
+	public SalesDetails( int id,Timestamp transaction_date, String product, int price, String pament_type, String name, String city,
+			String state, String country, Timestamp account_created, Timestamp last_login, float latitude, float longitude) {
 		super();
-		Transaction_date = transaction_date;
+		this.id=id;
+		this.transaction_date = transaction_date;
 		this.product = product;
 		this.price = price;
 		this.pament_type = pament_type;
@@ -161,23 +192,11 @@ public class SalesDetails {
 
 	@Override
 	public String toString() {
-		return "Sales [Transaction_date=" + Transaction_date + ", product=" + product + ", price=" + price
-				+ ", pament_type=" + pament_type + ", name=" + name + ", city=" + city + ", state=" + state
+		return "SalesDetails [id=" + id + ", transaction_date=" + transaction_date + ", product=" + product + ", price="
+				+ price + ", pament_type=" + pament_type + ", name=" + name + ", city=" + city + ", state=" + state
 				+ ", country=" + country + ", account_created=" + account_created + ", last_login=" + last_login
 				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
