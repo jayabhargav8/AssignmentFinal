@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Api(value = "Swagger2DemoRestController", description = "REST Apis related to Student Entity!!!!")
+@Api(value = "Swagger2DemoRestController", description = "REST Apis related to sales Entity!!!!")
 @RestController
 public class SalesController {
 	
@@ -32,22 +32,23 @@ public class SalesController {
 				@ApiResponse(code = 401, message = "not authorized!"), 
 				@ApiResponse(code = 403, message = "forbidden!!!"),
 				@ApiResponse(code = 404, message = "not found!!!") })
+	  
 	  @GetMapping(value="/sales")
-	  private List<SalesDetails> getAllStudent() 
+	  private List<SalesDetails> getAllSales() 
 	  {
 	  return salseService.getAllSales();
 	  }
 	  
 	  
 	  @GetMapping(value="/sales/{id}")
-	  private SalesDetails getStudent(@PathVariable("id") int id) 
+	  private SalesDetails getSales(@PathVariable("id") int id) 
 	  {
 	  return salseService.getSalesById(id);
 	  }
 	  
 	  
 	  @DeleteMapping(value="/sales/{id}")
-	  private void deleteStudent(@PathVariable int id)
+	  private void deleteSales(@PathVariable int id)
 	  {
 		  salseService.delete(id);
 	  }
