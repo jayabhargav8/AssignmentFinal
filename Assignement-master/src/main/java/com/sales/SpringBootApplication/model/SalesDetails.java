@@ -1,11 +1,9 @@
 package com.sales.SpringBootApplication.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,56 +11,74 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table
-public class SalesDetails{
-	
-	private static final String MY_TIME_ZONE="Asia/Kolkata";
+public class SalesDetails {
 
-	@Column(name="ID")
-	@GeneratedValue
 	@Id
+	@Column(name = "ID", unique = true, nullable = false)
 	private int id;
-	
-	@Column(name="TRANSACTION_DATE")
-	@JsonFormat(timezone = MY_TIME_ZONE)
-	private Timestamp transaction_date ; 
-	
-	@Column(name="PRODUCT")
+
+	@Column(name = "TRANSACTION_DATE")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Kolkata")
+	private Timestamp transaction_date;
+
+	@Column(name = "PRODUCT")
 	private String product;
-	
-	@Column(name="PRICE")
+
+	@Column(name = "PRICE")
 	private int price;
-	
-	@Column(name="PAMENT_TYPE")
+
+	@Column(name = "PAMENT_TYPE")
 	private String pament_type;
-	
-	@Column(name="NAME")
+
+	@Column(name = "NAME")
 	private String name;
-	
-	@Column(name="CITY")
+
+	@Column(name = "CITY")
 	private String city;
-	
-	@Column(name="STATE")
+
+	@Column(name = "STATE")
 	private String state;
-	
-	@Column(name="COUNTRY")
+
+	@Column(name = "COUNTRY")
 	private String country;
-	
-	@Column(name="ACCOUNT_CREATED")
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+
+	@Column(name = "ACCOUNT_CREATED")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Kolkata")
 	private Timestamp account_created;
-	
-	@Column(name="LAST_LOGIN")
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+
+	@Column(name = "LAST_LOGIN")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Kolkata")
 	private Timestamp last_login;
-	
-	@Column(name="LATITUDE")
+
+	@Column(name = "LATITUDE")
 	private float latitude;
 
-	@Column(name="LONGITUDE")
+	@Column(name = "LONGITUDE")
 	private float longitude;
 
-	
-	
+	public SalesDetails() {
+
+	}
+
+	public SalesDetails(int id, Timestamp transaction_date, String product, int price, String pament_type, String name,
+			String city, String state, String country, Timestamp account_created, Timestamp last_login, float latitude,
+			float longitude) {
+		super();
+		this.id = id;
+		this.transaction_date = transaction_date;
+		this.product = product;
+		this.price = price;
+		this.pament_type = pament_type;
+		this.name = name;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.account_created = account_created;
+		this.last_login = last_login;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -71,7 +87,7 @@ public class SalesDetails{
 		this.id = id;
 	}
 
-	public Date getTransaction_date() {
+	public Timestamp getTransaction_date() {
 		return transaction_date;
 	}
 
@@ -135,7 +151,7 @@ public class SalesDetails{
 		this.country = country;
 	}
 
-	public Date getAccount_created() {
+	public Timestamp getAccount_created() {
 		return account_created;
 	}
 
@@ -143,7 +159,7 @@ public class SalesDetails{
 		this.account_created = account_created;
 	}
 
-	public Date getLast_login() {
+	public Timestamp getLast_login() {
 		return last_login;
 	}
 
@@ -166,29 +182,6 @@ public class SalesDetails{
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
-	
-	public SalesDetails()
-	{
-		
-	}
-	
-	public SalesDetails( int id,Timestamp transaction_date, String product, int price, String pament_type, String name, String city,
-			String state, String country, Timestamp account_created, Timestamp last_login, float latitude, float longitude) {
-		super();
-		this.id=id;
-		this.transaction_date = transaction_date;
-		this.product = product;
-		this.price = price;
-		this.pament_type = pament_type;
-		this.name = name;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-		this.account_created = account_created;
-		this.last_login = last_login;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
 
 	@Override
 	public String toString() {
@@ -197,6 +190,5 @@ public class SalesDetails{
 				+ ", country=" + country + ", account_created=" + account_created + ", last_login=" + last_login
 				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
-	
 
 }
