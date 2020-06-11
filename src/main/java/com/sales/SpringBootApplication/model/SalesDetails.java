@@ -8,19 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.transaction.Transaction;
 
-<<<<<<< HEAD
-=======
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModelProperty;
 
->>>>>>> 4bd96e9... Data execute in h2 database
 @Entity
 @Table
 public class SalesDetails {
 
 	@Column
-<<<<<<< HEAD
+
 	private Date Transaction_date ; 
 	
 	@Column
@@ -54,7 +52,7 @@ public class SalesDetails {
 	private float latitude;
 	
 	@Column
-=======
+
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@ApiModelProperty(notes = "Transaction_date of the Sales",name="Transaction_date",required=true,value="test Transaction_date")
 	private Date Transaction_date ; 
@@ -104,7 +102,7 @@ public class SalesDetails {
 	
 	@Column
 	@ApiModelProperty(notes = "product of the longitude",name="longitude",required=true,value="test longitude")
->>>>>>> 4bd96e9... Data execute in h2 database
+
 	private float longitude;
 
 	public Date getTransaction_date() {
@@ -232,15 +230,6 @@ public class SalesDetails {
 				+ ", country=" + country + ", account_created=" + account_created + ", last_login=" + last_login
 				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

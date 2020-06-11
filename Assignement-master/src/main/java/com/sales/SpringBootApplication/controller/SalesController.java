@@ -3,14 +3,22 @@ package com.sales.SpringBootApplication.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.sales.SpringBootApplication.helper.ExcelHelper;
+import com.sales.SpringBootApplication.model.ResponseMessage;
 import com.sales.SpringBootApplication.model.SalesDetails;
+import com.sales.SpringBootApplication.service.ExcelService;
 import com.sales.SpringBootApplication.service.PageService;
 import com.sales.SpringBootApplication.service.SalesService;
 
@@ -25,7 +33,7 @@ public class SalesController {
 
 	@Autowired
 	SalesService salseService;
-	
+
 	@Autowired
 	PageService pageService;
 
@@ -33,13 +41,12 @@ public class SalesController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Suceess|OK"),
 			@ApiResponse(code = 401, message = "not authorized!"), @ApiResponse(code = 403, message = "forbidden!!!"),
 			@ApiResponse(code = 404, message = "not found!!!") })
-	
-	@GetMapping(value="/")
-	private String onLoading()
-	{
+
+	@GetMapping(value = "/")
+	private String onLoading() {
 		return "welcome to sales";
 	}
-	
+
 	@GetMapping(value = "/sales")
 	private List<SalesDetails> getAllSales() {
 		return salseService.getAllSales();
