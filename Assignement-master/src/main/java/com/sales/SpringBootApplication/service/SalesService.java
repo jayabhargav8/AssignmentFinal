@@ -39,6 +39,10 @@ public class SalesService {
 		salesRepository.save(sales);
 		
 	}
-
+	
+	public void Update(SalesDetails sales) {
+		salesRepository.save(sales);
+		
+	}
 
 }
